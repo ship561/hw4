@@ -87,8 +87,12 @@ public class simulated_annealing {
 		for (int i=0; i < arr.length; i++)
 			tempArr[i] = arr[i];
 		Random r = new Random();
-		int i = r.nextInt(arr.length);
-		int j = r.nextInt(arr.length);
+		int i = 0;
+		int j = 0;
+		while (i == j) {
+			i = r.nextInt(arr.length);
+			j = r.nextInt(arr.length);
+		}
 		int temp = tempArr[i];
 		tempArr[i] = tempArr[j];
 		tempArr[j] = temp;
@@ -101,8 +105,8 @@ public class simulated_annealing {
 		int iter=0;
 		double T = 1000;
 		Random r = new Random();
-		int[] mu = sa.randomN(sa.A);
-		int[] sigma = sa. randomN(sa.B);
+		int[] mu = sa.A = sa.randomN(sa.A);
+		int[] sigma = sa.B = sa. randomN(sa.B);
 		x=sa.multiset_C(sa.A, sa.B);
 		Arrays.sort(x);
 
@@ -110,9 +114,9 @@ public class simulated_annealing {
 			//while (sa.E(x) > 0) { //continues until the minimum is found. when fitness =0
 			for (int i=0; i<500; i++) {	
 				if(r.nextDouble() >= .5) 
-					mu = sa.swap(mu);
+					mu = sa.swap(sa.A);
 				else 
-					sigma = sa.swap(sigma);
+					sigma = sa.swap(sa.B);
 				y=sa.multiset_C(mu,sigma);
 				Arrays.sort(y);
 				if(sa.E(x) > sa.E(y)) {				//stores best fitness score
